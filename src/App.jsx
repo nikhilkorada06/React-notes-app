@@ -32,7 +32,6 @@ const App = () => {
         <img className='h-20 w-20 ml-3 rotate-y-180' src={notesLogo} alt="notes" />
       </div>
 
-
       <form 
             onSubmit={(e) => {submitHandler(e, title, description)}} 
             className='flex flex-row gap-30 mb-4 mt-10 justify-center px-10'
@@ -74,7 +73,6 @@ const App = () => {
               key={idx} 
               className='relative h-62 w-72 object-fit bg-[url(https://purepng.com/public/uploads/medium/purepng.com-yellow-sticky-notessticky-notesclipartyellowpinnedtaped-142152649982192nye.png)] bg-cover rounded-2xl p-1'
           >
-
               <button 
                       onClick={() => deleteHandler(idx)} 
                       className='active:scale-90 absolute top-2 right-9 bg-red-500 text-white rounded-full p-1 hover:bg-red-700 cursor-pointer'
@@ -92,10 +90,9 @@ const App = () => {
           </div>
 
         ))}
-
       </div>
     </>
   )
 }
 
-export default App
+export default App;
