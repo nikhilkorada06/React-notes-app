@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import notesLogo from './assets/notes-app-symbol.jpg';
+import pinNotes from './assets/background-for-pinned-notes.png';
 import { X } from 'lucide-react';
 
 const App = () => {
@@ -26,9 +27,9 @@ const App = () => {
 
   return (
     <>
-      <div className='flex flex-row align-items-center justify-center mt-10'>
+      <div className='flex flex-row items-center justify-center mt-10'>
         
-        <h1 className="text-5xl font-bold mb-6 flex align-items-center pt-4">Notes App</h1>
+        <h1 className="text-5xl font-bold mb-6 flex items-center pt-4">Notes App</h1>
         <img className='h-20 w-20 ml-3 rotate-y-180' src={notesLogo} alt="notes" />
       </div>
 
@@ -71,7 +72,8 @@ const App = () => {
 
           <div 
               key={idx} 
-              className='relative h-62 w-72 object-fit bg-[url(https://purepng.com/public/uploads/medium/purepng.com-yellow-sticky-notessticky-notesclipartyellowpinnedtaped-142152649982192nye.png)] bg-cover rounded-2xl p-1'
+              className='relative h-62 w-72 object-fit bg-cover rounded-2xl p-1'
+              style={{backgroundImage: `url(${pinNotes})`}}
           >
               <button 
                       onClick={() => deleteHandler(idx)} 
