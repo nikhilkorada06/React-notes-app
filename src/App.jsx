@@ -1,4 +1,3 @@
-import React from 'react'
 import {useState} from 'react'
 import notesLogo from './assets/notes-app-symbol.jpg';
 import pinNotes from './assets/background-for-pinned-notes.png';
@@ -8,7 +7,7 @@ const App = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState(JSON.parse(localStorage.getItem("todo")) || []);
 
   const submitHandler = (e, title, description) => {
     e.preventDefault();
@@ -18,17 +17,18 @@ const App = () => {
     console.log("Form Submitted");
 
     setTodo([...todo, {title, description}]);
+    localStorage.setItem("todo", JSON.stringify([...todo, {title, description}]));
   }
 
   const deleteHandler = (index) => {
-    const newTodo = todo.filter((item, idx) => idx !== index);
+    const newTodo = todo.filter((_, idx) => idx !== index);
     setTodo(newTodo);
+    localStorage.setItem("todo", JSON.stringify(newTodo));
   }
 
   return (
     <>
       <div className='flex flex-row items-center justify-center mt-10'>
-        
         <h1 className="text-5xl font-bold mb-6 flex items-center pt-4">Notes App</h1>
         <img className='h-20 w-20 ml-3 rotate-y-180' src={notesLogo} alt="notes" />
       </div>
@@ -72,12 +72,12 @@ const App = () => {
 
           <div 
               key={idx} 
-              className='relative h-62 w-72 object-fit bg-cover rounded-2xl p-1'
+              className='relative sm:h-62 sm:w-72 object-fit bg-cover rounded-2xl p-1 h-30 w-35'
               style={{backgroundImage: `url(${pinNotes})`}}
           >
               <button 
                       onClick={() => deleteHandler(idx)} 
-                      className='active:scale-90 absolute top-2 right-9 bg-red-500 text-white rounded-full p-1 hover:bg-red-700 cursor-pointer'
+                      className='active:scale-90 absolute sm:top-2 sm:right-9 top-0.8 right-4 bg-red-500 text-white rounded-full sm:p-1 p-0 hover:bg-red-700 cursor-pointer'
               >
                 <X size={16} />
               </button>
